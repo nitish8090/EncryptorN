@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          body: Container(
+        body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage("assets/background.png"),
@@ -82,23 +82,26 @@ class _MyAppState extends State<MyApp> {
                 },
                 controller: controller,
               ),
-              RaisedButton(
-                child: Text('Encrypt', textScaleFactor: 1.5,),
-                onPressed: () {
-                  controller2.text = encryptor(controller.text);
-                  controller.text = "";
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                color: Colors.lightGreen,
-              ),
+              ElevatedButton(
+                  child: Text(
+                    'Encrypt',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    controller2.text = encryptor(controller.text);
+                    controller.text = "";
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.lightGreen),
+                  )),
               SizedBox(height: 20),
               TextField(
                 maxLines: null,
                 decoration: InputDecoration(
                   hintText: 'To decrypt, Paste or Type here!!',
-                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
                   fillColor: Colors.white,
                   filled: true,
                 ),
@@ -112,17 +115,19 @@ class _MyAppState extends State<MyApp> {
                 },
                 controller: controller2,
               ),
-              RaisedButton(
-                child: Text('Decrypt', textScaleFactor: 1.5,),
-                onPressed: () {
-                  controller.text = decryptor(controller2.text);
-                  controller2.text = "";
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                color: Colors.lightGreen,
-              )
+              ElevatedButton(
+                  child: Text(
+                    'Decrypt',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    controller.text = decryptor(controller2.text);
+                    controller2.text = "";
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.lightGreen),
+                  )),
             ],
           ),
         ),
@@ -183,4 +188,3 @@ String decryptor(String textToDecrypt) {
 
   return deText_out;
 }
-
